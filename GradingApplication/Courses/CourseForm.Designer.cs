@@ -61,7 +61,7 @@
             this.studentsGridView.Name = "studentsGridView";
             this.studentsGridView.Size = new System.Drawing.Size(394, 219);
             this.studentsGridView.TabIndex = 0;
-            this.studentsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.studentsGridView_CellContentClick);
+            this.studentsGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.studentsGridView_DoubleClick);
             // 
             // addStudentButton
             // 

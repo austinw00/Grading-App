@@ -58,10 +58,10 @@ namespace GradingApplication.Courses
             }
         }
 
-        private void studentsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void studentsGridView_DoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // Get the ID of the selected student
-            int studentId = (int)studentsGridView.Rows[e.RowIndex].Cells["Id"].Value;
+            int studentId = Convert.ToInt32(studentsGridView.Rows[e.RowIndex].Cells["Id"].Value);
 
             // Open the StudentGradesForm for the selected student and course
             StudentGradesForm studentGradesForm = new StudentGradesForm(studentId, _courseId);

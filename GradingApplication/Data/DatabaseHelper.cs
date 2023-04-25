@@ -1,6 +1,8 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SQLite;
 using System.IO;
+using System.Windows.Forms;
 
 public class DatabaseHelper
 {
@@ -37,7 +39,7 @@ public class DatabaseHelper
             CREATE TABLE IF NOT EXISTS Assignments (
                 Id INTEGER PRIMARY KEY,
                 Name TEXT NOT NULL,
-                Type TEXT NOT NULL CHECK (Type IN ('Homework', 'Test')),
+                Type TEXT NOT NULL CHECK (Type IN ('homework', 'test')),
                 CourseId INTEGER NOT NULL,
                 FOREIGN KEY (CourseId) REFERENCES Courses (Id)
             );
@@ -46,7 +48,7 @@ public class DatabaseHelper
                 Id INTEGER PRIMARY KEY,
                 AssignmentId INTEGER NOT NULL,
                 StudentId INTEGER NOT NULL,
-                Score REAL NOT NULL,
+                Grade REAL NOT NULL,
                 FOREIGN KEY (AssignmentId) REFERENCES Assignments (Id),
                 FOREIGN KEY (StudentId) REFERENCES Students (Id)
             );
@@ -114,6 +116,27 @@ public class DatabaseHelper
             connection.Close();
         }
     }
+    public static string GetStudentNameById(int studentId)
+    {
+        string sql = "SELECT FirstName || ' ' || LastName AS FullName FROM Students WHERE Id = @StudentId";
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@StudentId", studentId);
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    return result.ToString();
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+    }
     public static DataTable GetStudentsByCourseId(int courseId)
     {
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseFilePath};Version=3;"))
@@ -138,6 +161,39 @@ public class DatabaseHelper
             }
         }
     }
+
+    public static DataTable GetStudentGrades(int studentId, int courseId)
+    {
+        try
+        {
+            string sql = @"
+        SELECT A.Name AS AssignmentName, G.Grade
+        FROM Assignments A
+        LEFT JOIN Grades G ON A.Id = G.AssignmentId AND G.StudentId = @StudentId
+        WHERE A.CourseId = @CourseId";
+
+            using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseFilePath};Version=3;"))
+            {
+                connection.Open();
+                using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, connection))
+                {
+                    adapter.SelectCommand.Parameters.AddWithValue("@StudentId", studentId);
+                    adapter.SelectCommand.Parameters.AddWithValue("@CourseId", courseId);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    return dataTable;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"An error occurred while retrieving the student grades: {ex.Message}");
+            return null; // or return an empty DataTable or throw the exception
+        }
+    }
+
+
+
 
     public static DataTable GetAllStudents()
     {
@@ -262,6 +318,83 @@ public class DatabaseHelper
         }
     }
 
+    public static string GetCourseNameById(int courseId)
+    {
+        string sql = "SELECT Name FROM Courses WHERE Id = @CourseId";
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@CourseId", courseId);
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    return result.ToString();
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+    }
+
     #endregion
 
+    #region Grades and Assignments
+
+    public static bool AddGrade(int studentId, int assignmentId, double grade)
+    {
+        try
+        {
+            string sql = "INSERT INTO Grades (StudentId, AssignmentId, Grade) VALUES (@StudentId, @AssignmentId, @Grade)";
+            using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseFilePath};Version=3;"))
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@StudentId", studentId);
+                    command.Parameters.AddWithValue("@AssignmentId", assignmentId);
+                    command.Parameters.AddWithValue("@Grade", grade);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"An error occurred while adding the grade: {ex.Message}");
+            return false;
+        }
+    }
+
+    public static int AddAssignment(string name, int courseId, string type)
+    {
+        try
+        {
+            string sql = @"INSERT INTO Assignments (Name, CourseId, Type) VALUES (@Name, @CourseId, @Type);
+                   SELECT last_insert_rowid();";
+            using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseFilePath};Version=3;"))
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", name);
+                    command.Parameters.AddWithValue("@CourseId", courseId);
+                    command.Parameters.AddWithValue("@Type", type);
+                    return Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"An error occurred while adding the assignment: {ex.Message}");
+            return -1;
+        }
+    }
+
+
+
+    #endregion
 }

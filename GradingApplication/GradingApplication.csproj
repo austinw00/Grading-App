@@ -130,6 +130,9 @@
     <EmbeddedResource Include="Courses\SelectStudentForm.resx">
       <DependentUpon>SelectStudentForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Courses\StudentGradesForm.resx">
+      <DependentUpon>StudentGradesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
