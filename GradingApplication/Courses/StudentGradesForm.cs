@@ -38,7 +38,7 @@ namespace GradingApplication.Courses
             string letterGrade = ConvertScoreToLetterGrade(DatabaseHelper.GetStudentOverallScore(_studentId, _courseId));
 
             // Set the label's Text property to the grade value
-            letterGradeLabel.Text = $"Letter Grade in Course: {letterGrade}%";
+            letterGradeLabel.Text = $"Letter Grade in Course: {letterGrade}";
         }
 
         public static string ConvertScoreToLetterGrade(double score)
