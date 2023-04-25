@@ -39,6 +39,7 @@
             this.AddAssignmentButton = new System.Windows.Forms.Button();
             this.typeTxt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.overallGradeLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assignmentsDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -60,6 +61,7 @@
             this.tableLayoutPanel1.Controls.Add(this.AddAssignmentButton, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.typeTxt, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.label3, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.overallGradeLabel, 3, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -157,6 +159,15 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "Type:";
             // 
+            // overallGradeLabel
+            // 
+            this.overallGradeLabel.AutoSize = true;
+            this.overallGradeLabel.Location = new System.Drawing.Point(603, 0);
+            this.overallGradeLabel.Name = "overallGradeLabel";
+            this.overallGradeLabel.Size = new System.Drawing.Size(72, 13);
+            this.overallGradeLabel.TabIndex = 10;
+            this.overallGradeLabel.Text = "Overall Grade";
+            // 
             // StudentGradesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -185,5 +196,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox typeTxt;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label overallGradeLabel;
     }
 }

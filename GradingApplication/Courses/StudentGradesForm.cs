@@ -19,23 +19,21 @@ namespace GradingApplication.Courses
             studentNameLabel.Text = $"Student: {studentName}";
             courseNameLabel.Text = $"Course: {courseName}";
 
+            LoadGrades();
+        }
+
+        public void LoadGrades()
+        {
             // Retrieve the assignments and grades for the selected student and course
             DataTable dataTable = DatabaseHelper.GetStudentGrades(_studentId, _courseId);
             assignmentsDataGridView.DataSource = dataTable;
+
+            // Get the student's grade in the course
+            double grade = DatabaseHelper.GetStudentOverallScore(_studentId, _courseId);
+
+            // Set the label's Text property to the grade value
+            overallGradeLabel.Text = $"Grade in Course: {grade}%";
         }
-
-        //private void StudentGradesForm_Load(object sender, EventArgs e)
-        //{
-        //    // Display the student name and course name in labels
-        //    string studentName = DatabaseHelper.GetStudentNameById(_studentId);
-        //    string courseName = DatabaseHelper.GetCourseNameById(_courseId);
-        //    studentNameLabel.Text = $"Student: {studentName}";
-        //    courseNameLabel.Text = $"Course: {courseName}";
-
-        //    // Retrieve the assignments and grades for the selected student and course
-        //    DataTable dataTable = DatabaseHelper.GetStudentGrades(_studentId, _courseId);
-        //    assignmentsDataGridView.DataSource = dataTable;
-        //}
 
         private void AddAssignmentButton_Click1(object sender, EventArgs e)
         {
@@ -93,6 +91,8 @@ namespace GradingApplication.Courses
             {
                 MessageBox.Show("An error occurred while adding the grade.");
             }
+
+            LoadGrades();
         }
 
     }

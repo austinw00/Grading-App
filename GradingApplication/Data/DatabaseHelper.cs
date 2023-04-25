@@ -394,6 +394,67 @@ public class DatabaseHelper
         }
     }
 
+    public static double GetStudentOverallScore(int studentId, int courseId)
+    {
+        double overallScore = 0;
+        double totalWeight = 0;
+
+        // Retrieve the assignments for the selected course
+        string sql = @"
+        SELECT A.Id, A.Name, A.Type, G.Grade
+        FROM Assignments A
+        LEFT JOIN Grades G ON A.Id = G.AssignmentId
+        WHERE A.CourseId = @CourseId AND G.StudentId = @StudentId";
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@CourseId", courseId);
+                command.Parameters.AddWithValue("@StudentId", studentId);
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int assignmentId = reader.GetInt32(0);
+                        string assignmentName = reader.GetString(1);
+                        string assignmentType = reader.GetString(2);
+                        double assignmentGrade = reader.IsDBNull(3) ? 0 : reader.GetDouble(3);
+
+                        // Calculate the weight of the assignment based on its type
+                        double weight = 0;
+                        switch (assignmentType)
+                        {
+                            case "homework":
+                                weight = 0.4;
+                                break;
+                            case "test":
+                                weight = 0.6;
+                                break;
+                        }
+
+                        // Calculate the weighted score for the assignment
+                        double weightedScore = assignmentGrade * weight;
+
+                        // Add the weighted score to the overall score
+                        overallScore += weightedScore;
+
+                        // Add the weight of the assignment to the total weight
+                        totalWeight += weight;
+                    }
+                }
+            }
+        }
+
+        // Calculate the overall grade for the course
+        if (totalWeight > 0)
+        {
+            overallScore /= totalWeight;
+        }
+
+        return overallScore;
+    }
+
 
 
     #endregion

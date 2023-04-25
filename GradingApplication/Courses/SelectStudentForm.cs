@@ -26,6 +26,8 @@ namespace GradingApplication.Courses
             {
                 this.Close();
             }
+
+            LoadStudents();
         }
 
         private void submitStudentButton_Click(object sender, EventArgs e)
@@ -33,6 +35,8 @@ namespace GradingApplication.Courses
             int selectedStudentId = Convert.ToInt32(studentsGridView.SelectedRows[0].Cells["Id"].Value);
             this.Tag = selectedStudentId;
             this.DialogResult = DialogResult.OK;
+
+            LoadStudents();
         }
     }
 }
