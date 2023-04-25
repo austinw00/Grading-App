@@ -167,10 +167,11 @@ public class DatabaseHelper
         try
         {
             string sql = @"
-        SELECT A.Name AS AssignmentName, G.Grade
-        FROM Assignments A
-        LEFT JOIN Grades G ON A.Id = G.AssignmentId AND G.StudentId = @StudentId
-        WHERE A.CourseId = @CourseId";
+            SELECT A.Name AS AssignmentName, G.Grade
+            FROM Assignments A
+            LEFT JOIN Grades G ON A.Id = G.AssignmentId AND G.StudentId = @StudentId
+            WHERE A.CourseId = @CourseId
+            AND G.StudentId = @StudentId";
 
             using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseFilePath};Version=3;"))
             {

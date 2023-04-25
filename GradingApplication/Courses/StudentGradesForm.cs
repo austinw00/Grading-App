@@ -33,7 +33,38 @@ namespace GradingApplication.Courses
 
             // Set the label's Text property to the grade value
             overallGradeLabel.Text = $"Grade in Course: {grade}%";
+
+            // Get the student's grade in the course
+            string letterGrade = ConvertScoreToLetterGrade(DatabaseHelper.GetStudentOverallScore(_studentId, _courseId));
+
+            // Set the label's Text property to the grade value
+            letterGradeLabel.Text = $"Letter Grade in Course: {letterGrade}%";
         }
+
+        public static string ConvertScoreToLetterGrade(double score)
+        {
+            if (score >= 90)
+            {
+                return "A";
+            }
+            else if (score >= 80)
+            {
+                return "B";
+            }
+            else if (score >= 70)
+            {
+                return "C";
+            }
+            else if (score >= 60)
+            {
+                return "D";
+            }
+            else
+            {
+                return "F";
+            }
+        }
+
 
         private void AddAssignmentButton_Click1(object sender, EventArgs e)
         {
