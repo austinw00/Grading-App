@@ -46,5 +46,10 @@ namespace GradingApplication.Students
                 MessageBox.Show("Please select a student to remove.");
             }
         }
+
+        private void studentGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

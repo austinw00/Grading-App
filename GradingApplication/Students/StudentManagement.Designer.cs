@@ -49,8 +49,9 @@
             this.studentGridView.Location = new System.Drawing.Point(403, 3);
             this.studentGridView.Name = "studentGridView";
             this.tableLayoutPanel1.SetRowSpan(this.studentGridView, 2);
-            this.studentGridView.Size = new System.Drawing.Size(394, 447);
+            this.studentGridView.Size = new System.Drawing.Size(394, 444);
             this.studentGridView.TabIndex = 1;
+            this.studentGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.studentGridView_CellContentClick);
             // 
             // addStudentButton
             // 
