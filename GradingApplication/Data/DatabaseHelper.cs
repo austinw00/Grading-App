@@ -167,11 +167,12 @@ public class DatabaseHelper
         try
         {
             string sql = @"
-            SELECT A.Name AS AssignmentName, G.Grade
+            SELECT A.Id AS AssignmentId, A.Name AS AssignmentName, A.Type, G.Grade
             FROM Assignments A
             LEFT JOIN Grades G ON A.Id = G.AssignmentId AND G.StudentId = @StudentId
             WHERE A.CourseId = @CourseId
-            AND G.StudentId = @StudentId";
+            AND G.StudentId = @StudentId;
+            ";
 
             using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseFilePath};Version=3;"))
             {
@@ -370,6 +371,32 @@ public class DatabaseHelper
         }
     }
 
+    public static bool UpdateGrade(int studentId, int assignmentId, double grade)
+    {
+        try
+        {
+            string sql = "UPDATE Grades SET Grade = @Grade WHERE StudentId = @StudentId AND AssignmentId = @AssignmentId";
+            using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseFilePath};Version=3;"))
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@StudentId", studentId);
+                    command.Parameters.AddWithValue("@AssignmentId", assignmentId);
+                    command.Parameters.AddWithValue("@Grade", grade);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"An error occurred while updating the grade: {ex.Message}");
+            return false;
+        }
+    }
+
+
     public static int AddAssignment(string name, int courseId, string type)
     {
         try
@@ -394,6 +421,57 @@ public class DatabaseHelper
             return -1;
         }
     }
+
+    public static bool DeleteAssignment(int assignmentId)
+    {
+        try
+        {
+            string sql = "DELETE FROM Assignments WHERE Id = @AssignmentId";
+            using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseFilePath};Version=3;"))
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@AssignmentId", assignmentId);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"An error occurred while deleting the assignment: {ex.Message}");
+            return false;
+        }
+    }
+
+
+    public static bool UpdateAssignment(int assignmentId, string name, int courseId, string type)
+    {
+        try
+        {
+            string sql = "UPDATE Assignments SET Name = @Name, CourseId = @CourseId, Type = @Type WHERE Id = @AssignmentId";
+            using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseFilePath};Version=3;"))
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@AssignmentId", assignmentId);
+                    command.Parameters.AddWithValue("@Name", name);
+                    command.Parameters.AddWithValue("@CourseId", courseId);
+                    command.Parameters.AddWithValue("@Type", type);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"An error occurred while updating the assignment: {ex.Message}");
+            return false;
+        }
+    }
+
 
     public static double GetStudentOverallScore(int studentId, int courseId)
     {

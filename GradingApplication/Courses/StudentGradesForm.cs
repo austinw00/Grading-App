@@ -126,5 +126,13 @@ namespace GradingApplication.Courses
             LoadGrades();
         }
 
+        private void assignmentsDataGridView_DoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int assignmentId = Convert.ToInt32(assignmentsDataGridView.Rows[e.RowIndex].Cells["AssignmentId"].Value);
+
+            // Open the StudentGradesForm for the selected student and course
+            AssignmentForm assignmentForm = new AssignmentForm(assignmentId, _courseId, _studentId);
+            assignmentForm.ShowDialog();
+        }
     }
 }

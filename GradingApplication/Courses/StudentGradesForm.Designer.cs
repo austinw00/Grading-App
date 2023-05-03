@@ -48,13 +48,11 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.125F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.625F));
             this.tableLayoutPanel1.Controls.Add(this.assignmentsDataGridView, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.courseNameLabel, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.studentNameLabel, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.assignmentNameTxt, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.gradeTxt, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 1);
@@ -64,6 +62,8 @@
             this.tableLayoutPanel1.Controls.Add(this.label3, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.overallGradeLabel, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.letterGradeLabel, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.studentNameLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.courseNameLabel, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -82,45 +82,50 @@
             this.assignmentsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.assignmentsDataGridView.Location = new System.Drawing.Point(3, 93);
             this.assignmentsDataGridView.Name = "assignmentsDataGridView";
-            this.assignmentsDataGridView.Size = new System.Drawing.Size(194, 84);
+            this.tableLayoutPanel1.SetRowSpan(this.assignmentsDataGridView, 3);
+            this.assignmentsDataGridView.Size = new System.Drawing.Size(324, 264);
             this.assignmentsDataGridView.TabIndex = 2;
+            this.assignmentsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.assignmentsDataGridView_DoubleClick);
             // 
             // courseNameLabel
             // 
             this.courseNameLabel.AutoSize = true;
-            this.courseNameLabel.Location = new System.Drawing.Point(403, 0);
+            this.tableLayoutPanel1.SetColumnSpan(this.courseNameLabel, 2);
+            this.courseNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.courseNameLabel.Location = new System.Drawing.Point(333, 0);
             this.courseNameLabel.Name = "courseNameLabel";
-            this.courseNameLabel.Size = new System.Drawing.Size(35, 13);
+            this.courseNameLabel.Size = new System.Drawing.Size(60, 24);
             this.courseNameLabel.TabIndex = 1;
             this.courseNameLabel.Text = "label1";
             // 
             // studentNameLabel
             // 
             this.studentNameLabel.AutoSize = true;
-            this.studentNameLabel.Location = new System.Drawing.Point(203, 0);
+            this.studentNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.studentNameLabel.Location = new System.Drawing.Point(3, 0);
             this.studentNameLabel.Name = "studentNameLabel";
-            this.studentNameLabel.Size = new System.Drawing.Size(35, 13);
+            this.studentNameLabel.Size = new System.Drawing.Size(60, 24);
             this.studentNameLabel.TabIndex = 0;
             this.studentNameLabel.Text = "label1";
             // 
             // assignmentNameTxt
             // 
-            this.assignmentNameTxt.Location = new System.Drawing.Point(403, 93);
+            this.assignmentNameTxt.Location = new System.Drawing.Point(437, 93);
             this.assignmentNameTxt.Name = "assignmentNameTxt";
-            this.assignmentNameTxt.Size = new System.Drawing.Size(100, 20);
+            this.assignmentNameTxt.Size = new System.Drawing.Size(99, 20);
             this.assignmentNameTxt.TabIndex = 3;
             // 
             // gradeTxt
             // 
-            this.gradeTxt.Location = new System.Drawing.Point(403, 183);
+            this.gradeTxt.Location = new System.Drawing.Point(437, 183);
             this.gradeTxt.Name = "gradeTxt";
-            this.gradeTxt.Size = new System.Drawing.Size(100, 20);
+            this.gradeTxt.Size = new System.Drawing.Size(99, 20);
             this.gradeTxt.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(203, 90);
+            this.label1.Location = new System.Drawing.Point(333, 90);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 13);
             this.label1.TabIndex = 6;
@@ -129,7 +134,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(203, 180);
+            this.label2.Location = new System.Drawing.Point(333, 180);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 13);
             this.label2.TabIndex = 7;
@@ -137,9 +142,9 @@
             // 
             // AddAssignmentButton
             // 
-            this.AddAssignmentButton.Location = new System.Drawing.Point(403, 363);
+            this.AddAssignmentButton.Location = new System.Drawing.Point(437, 363);
             this.AddAssignmentButton.Name = "AddAssignmentButton";
-            this.AddAssignmentButton.Size = new System.Drawing.Size(137, 23);
+            this.AddAssignmentButton.Size = new System.Drawing.Size(99, 23);
             this.AddAssignmentButton.TabIndex = 5;
             this.AddAssignmentButton.Text = "Add Assignment";
             this.AddAssignmentButton.UseVisualStyleBackColor = true;
@@ -147,15 +152,15 @@
             // 
             // typeTxt
             // 
-            this.typeTxt.Location = new System.Drawing.Point(403, 273);
+            this.typeTxt.Location = new System.Drawing.Point(437, 273);
             this.typeTxt.Name = "typeTxt";
-            this.typeTxt.Size = new System.Drawing.Size(100, 20);
+            this.typeTxt.Size = new System.Drawing.Size(99, 20);
             this.typeTxt.TabIndex = 8;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(203, 270);
+            this.label3.Location = new System.Drawing.Point(333, 270);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 9;
@@ -164,18 +169,20 @@
             // overallGradeLabel
             // 
             this.overallGradeLabel.AutoSize = true;
-            this.overallGradeLabel.Location = new System.Drawing.Point(603, 0);
+            this.overallGradeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.overallGradeLabel.Location = new System.Drawing.Point(542, 0);
             this.overallGradeLabel.Name = "overallGradeLabel";
-            this.overallGradeLabel.Size = new System.Drawing.Size(72, 13);
+            this.overallGradeLabel.Size = new System.Drawing.Size(133, 25);
             this.overallGradeLabel.TabIndex = 10;
             this.overallGradeLabel.Text = "Overall Grade";
             // 
             // letterGradeLabel
             // 
             this.letterGradeLabel.AutoSize = true;
-            this.letterGradeLabel.Location = new System.Drawing.Point(603, 90);
+            this.letterGradeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.letterGradeLabel.Location = new System.Drawing.Point(542, 90);
             this.letterGradeLabel.Name = "letterGradeLabel";
-            this.letterGradeLabel.Size = new System.Drawing.Size(72, 13);
+            this.letterGradeLabel.Size = new System.Drawing.Size(133, 25);
             this.letterGradeLabel.TabIndex = 11;
             this.letterGradeLabel.Text = "Overall Grade";
             // 

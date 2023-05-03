@@ -46,10 +46,10 @@
             // studentGridView
             // 
             this.studentGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.studentGridView.Location = new System.Drawing.Point(403, 3);
+            this.studentGridView.Location = new System.Drawing.Point(118, 3);
             this.studentGridView.Name = "studentGridView";
             this.tableLayoutPanel1.SetRowSpan(this.studentGridView, 2);
-            this.studentGridView.Size = new System.Drawing.Size(394, 444);
+            this.studentGridView.Size = new System.Drawing.Size(309, 223);
             this.studentGridView.TabIndex = 1;
             this.studentGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.studentGridView_CellContentClick);
             // 
@@ -57,7 +57,7 @@
             // 
             this.addStudentButton.Location = new System.Drawing.Point(3, 3);
             this.addStudentButton.Name = "addStudentButton";
-            this.addStudentButton.Size = new System.Drawing.Size(75, 23);
+            this.addStudentButton.Size = new System.Drawing.Size(75, 21);
             this.addStudentButton.TabIndex = 0;
             this.addStudentButton.Text = "Add Student";
             this.addStudentButton.UseVisualStyleBackColor = true;
@@ -68,23 +68,24 @@
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.removeStudentButton, 0, 1);
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.9012F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.16422F));
             this.tableLayoutPanel1.Controls.Add(this.addStudentButton, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.studentGridView, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.studentGridView, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.removeStudentButton, 0, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.1813F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.8187F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(430, 229);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // removeStudentButton
             // 
-            this.removeStudentButton.Location = new System.Drawing.Point(3, 228);
+            this.removeStudentButton.Location = new System.Drawing.Point(3, 30);
             this.removeStudentButton.Name = "removeStudentButton";
             this.removeStudentButton.Size = new System.Drawing.Size(105, 23);
             this.removeStudentButton.TabIndex = 2;
@@ -96,7 +97,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(430, 229);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "StudentManagement";
             this.Text = "StudentManagement";

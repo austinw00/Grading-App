@@ -17,21 +17,8 @@ namespace GradingApplication
         private void LoadCourses()
         {
             DataTable coursesTable = DatabaseHelper.GetAllCourses();
-            courseListBox.DisplayMember = "Name";
-            courseListBox.ValueMember = "Id";
-            courseListBox.DataSource = coursesTable;
-        }
-
-        private void courseListBox_DoubleClick(object sender, EventArgs e)
-        {
-            if (courseListBox.SelectedItem != null)
-            {
-                int courseId = Convert.ToInt32(courseListBox.SelectedValue);
-                string courseName = courseListBox.Text;
-
-                CourseForm courseForm = new CourseForm(courseId, courseName);
-                courseForm.ShowDialog();
-            }
+            courseBindingSource.DataSource = coursesTable;
+            courseDataGridView.DataSource = courseBindingSource;
         }
 
 
@@ -47,6 +34,20 @@ namespace GradingApplication
             courseForm.ShowDialog();
         }
 
+        private void enterCourseButton_Click(object sender, EventArgs e)
+        {
+            if (courseDataGridView.SelectedRows.Count > 0)
+            {
+                int courseId = Convert.ToInt32(courseDataGridView.SelectedRows[0].Cells["Id"].Value);
+                string courseName = courseDataGridView.SelectedRows[0].Cells["Name"].Value.ToString();
 
+                CourseForm courseForm = new CourseForm(courseId, courseName);
+                courseForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a course to enter.");
+            }
+        }
     }
 }

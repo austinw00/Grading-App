@@ -41,9 +41,10 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.06294F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.72028F));
             this.tableLayoutPanel1.Controls.Add(this.addCourseButton, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.removeCourseButton, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.courseGridView, 1, 0);
@@ -51,9 +52,9 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88.66666F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(488, 285);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // addCourseButton
@@ -68,7 +69,7 @@
             // 
             // removeCourseButton
             // 
-            this.removeCourseButton.Location = new System.Drawing.Point(3, 228);
+            this.removeCourseButton.Location = new System.Drawing.Point(3, 35);
             this.removeCourseButton.Name = "removeCourseButton";
             this.removeCourseButton.Size = new System.Drawing.Size(105, 23);
             this.removeCourseButton.TabIndex = 1;
@@ -80,16 +81,18 @@
             // 
             this.courseGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.courseGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.courseGridView.Location = new System.Drawing.Point(403, 3);
+            this.courseGridView.Location = new System.Drawing.Point(165, 3);
             this.courseGridView.Name = "courseGridView";
-            this.courseGridView.Size = new System.Drawing.Size(394, 219);
+            this.tableLayoutPanel1.SetRowSpan(this.courseGridView, 2);
+            this.courseGridView.Size = new System.Drawing.Size(296, 279);
             this.courseGridView.TabIndex = 2;
+            this.courseGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.courseGridView_CellContentClick);
             // 
             // CourseManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(488, 285);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "CourseManagement";
             this.Text = "CourseManagement";

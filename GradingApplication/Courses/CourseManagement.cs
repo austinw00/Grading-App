@@ -40,5 +40,10 @@ namespace GradingApplication.Courses
                 MessageBox.Show("Please select a course to remove.");
             }
         }
+
+        private void courseGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

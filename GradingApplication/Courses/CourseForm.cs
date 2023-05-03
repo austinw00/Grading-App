@@ -14,6 +14,7 @@ namespace GradingApplication.Courses
             _courseId = courseId;
             _courseName = courseName;
             this.Text = $"Students in {_courseName}";
+            studentsLabel.Text = $"Students in {_courseName}";
             LoadStudents();
         }
         private void LoadStudents()
@@ -66,6 +67,11 @@ namespace GradingApplication.Courses
             // Open the StudentGradesForm for the selected student and course
             StudentGradesForm studentGradesForm = new StudentGradesForm(studentId, _courseId);
             studentGradesForm.ShowDialog();
+        }
+
+        private void CourseForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
