@@ -40,7 +40,7 @@
             // 
             // saveChangesButton
             // 
-            this.saveChangesButton.Location = new System.Drawing.Point(283, 112);
+            this.saveChangesButton.Location = new System.Drawing.Point(211, 22);
             this.saveChangesButton.Name = "saveChangesButton";
             this.saveChangesButton.Size = new System.Drawing.Size(115, 23);
             this.saveChangesButton.TabIndex = 1;
@@ -50,7 +50,7 @@
             // 
             // deleteAssignmentButton
             // 
-            this.deleteAssignmentButton.Location = new System.Drawing.Point(283, 141);
+            this.deleteAssignmentButton.Location = new System.Drawing.Point(211, 51);
             this.deleteAssignmentButton.Name = "deleteAssignmentButton";
             this.deleteAssignmentButton.Size = new System.Drawing.Size(115, 23);
             this.deleteAssignmentButton.TabIndex = 2;
@@ -60,14 +60,14 @@
             // 
             // assignmentNameTxt
             // 
-            this.assignmentNameTxt.Location = new System.Drawing.Point(177, 100);
+            this.assignmentNameTxt.Location = new System.Drawing.Point(105, 10);
             this.assignmentNameTxt.Name = "assignmentNameTxt";
             this.assignmentNameTxt.Size = new System.Drawing.Size(100, 20);
             this.assignmentNameTxt.TabIndex = 3;
             // 
             // gradeTxt
             // 
-            this.gradeTxt.Location = new System.Drawing.Point(177, 126);
+            this.gradeTxt.Location = new System.Drawing.Point(105, 36);
             this.gradeTxt.Name = "gradeTxt";
             this.gradeTxt.Size = new System.Drawing.Size(100, 20);
             this.gradeTxt.TabIndex = 4;
@@ -75,7 +75,7 @@
             // 
             // typeTxt
             // 
-            this.typeTxt.Location = new System.Drawing.Point(177, 152);
+            this.typeTxt.Location = new System.Drawing.Point(105, 62);
             this.typeTxt.Name = "typeTxt";
             this.typeTxt.Size = new System.Drawing.Size(100, 20);
             this.typeTxt.TabIndex = 5;
@@ -83,7 +83,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(79, 103);
+            this.label1.Location = new System.Drawing.Point(7, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 6;
@@ -93,7 +93,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(106, 129);
+            this.label2.Location = new System.Drawing.Point(34, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 7;
@@ -102,7 +102,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(106, 155);
+            this.label3.Location = new System.Drawing.Point(34, 65);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 8;
@@ -112,7 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(342, 92);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

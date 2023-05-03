@@ -14,6 +14,7 @@ namespace GradingApplication.Courses
             _courseId = courseId;
             _assignmentId = assignmentId;
             InitializeComponent();
+            this.Text = $"Assignment {_assignmentId}";
         }
 
         private void textBox2_TextChanged(object sender, System.EventArgs e)
